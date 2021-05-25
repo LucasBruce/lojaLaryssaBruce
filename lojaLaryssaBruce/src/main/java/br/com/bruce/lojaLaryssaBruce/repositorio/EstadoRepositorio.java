@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.com.bruce.lojaLaryssaBruce.modelo.Estado;
 
 @Repository
-public interface EstadoRepositorio extends JpaRepository<Long, Estado>{
+public interface EstadoRepositorio extends JpaRepository<Estado, Long>{
 
 }
