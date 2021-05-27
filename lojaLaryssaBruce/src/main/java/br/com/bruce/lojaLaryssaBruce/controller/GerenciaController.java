@@ -8,7 +8,7 @@ public class GerenciaController {
 	
 	@GetMapping("/")
 	public String gerencia() {
-		return "gerencia/index";
+		return "gerencia/home";
 	}
 
 }
