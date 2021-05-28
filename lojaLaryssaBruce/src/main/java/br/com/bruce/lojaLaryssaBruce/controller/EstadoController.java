@@ -20,5 +20,12 @@ public class EstadoController {
 		return "/gerencia/estado/cadastro";
 	}
 	
+	@GetMapping("/gerencia/estado/cadastro")
+	public  ModelAndView cadastro(Estado estado) {
+		ModelAndView mav = new ModelAndView("/gerencia/estado/cadastro");
+    	mav.addObject("estado", estado);
+    	return mav;
+	}
+	
 	
 }
