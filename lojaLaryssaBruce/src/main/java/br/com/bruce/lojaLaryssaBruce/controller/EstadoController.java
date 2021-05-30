@@ -1,6 +1,5 @@
 package br.com.bruce.lojaLaryssaBruce.controller;
 
-import javax.naming.Binding;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +38,13 @@ public class EstadoController {
 		}
 		this.estadoRepositorio.saveAndFlush(estado);
 		return cadastro(new Estado());
+	}
+	
+	@GetMapping("/gerencia/estado/lista")
+	public ModelAndView lista(Estado estado) {
+		ModelAndView mav = new ModelAndView("/gerencia/estado/lista");
+		mav.addObject("estado", estado);
+		return mav;
 	}
 	
 	
