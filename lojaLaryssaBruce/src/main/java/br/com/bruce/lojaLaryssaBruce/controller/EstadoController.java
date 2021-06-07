@@ -18,11 +18,6 @@ public class EstadoController {
 	@Autowired
 	private EstadoRepositorio estadoRepositorio;
 	
-	@GetMapping("/gerencia")
-	public String cadastrar() {
-		
-		return "/gerencia/estado/cadastro";
-	}
 	
 	@GetMapping("/gerencia/estado/cadastro")
 	public  ModelAndView cadastro(Estado estado) {
