@@ -1,11 +1,14 @@
 package br.com.bruce.lojaLaryssaBruce.controller;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,7 +29,7 @@ public class EstadoController {
     	return mav;
 	}
 	
-	@PostMapping("gerencia/estado/salvar")
+	@PostMapping("/gerencia/estado/salvar")
 	public ModelAndView salvar(@Valid Estado estado, BindingResult result) {
 		if(result.hasErrors()) {
 			return cadastro(estado);
@@ -36,10 +39,17 @@ public class EstadoController {
 	}
 	
 	@GetMapping("/gerencia/estado/lista")
-	public ModelAndView lista(Estado estado) {
+	public ModelAndView lista() {
 		ModelAndView mav = new ModelAndView("/gerencia/estado/lista");
-		mav.addObject("estado", estado);
+	    mav.addObject("listaEstado", this.estadoRepositorio.findAll());
 		return mav;
+	}
+	
+	@GetMapping("/gerencia/estado/remover/{id}")
+	public ModelAndView remover(@PathVariable("id") long id) {
+		Optional<Estado> estado = this.estadoRepositorio.findById(id);
+		this.estadoRepositorio.delete(estado.get());
+		return lista();
 	}
 	
 	
