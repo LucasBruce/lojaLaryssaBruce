@@ -45,6 +45,12 @@ public class EstadoController {
 		return mav;
 	}
 	
+	@GetMapping("/gerencia/estado/editar/{id}")
+	public ModelAndView editar(@PathVariable("id") long id) {
+		Optional<Estado> estado = this.estadoRepositorio.findById(id);
+		return cadastro(estado.get());
+	}
+	
 	@GetMapping("/gerencia/estado/remover/{id}")
 	public ModelAndView remover(@PathVariable("id") long id) {
 		Optional<Estado> estado = this.estadoRepositorio.findById(id);
