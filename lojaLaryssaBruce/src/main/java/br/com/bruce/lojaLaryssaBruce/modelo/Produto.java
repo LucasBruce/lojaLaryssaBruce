@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,7 +18,16 @@ public class Produto {
 	private Double valorVenda;
 	private String categoria;
 	private String marca;
-	private String nomeImagem;
+	@OneToOne
+    private Foto foto;
+
+	public Foto getFoto() {
+		return foto;
+	}
+
+	public void setFoto(Foto foto) {
+		this.foto = foto;
+	}
 
 	public Long getId() {
 		return id;
@@ -57,14 +67,6 @@ public class Produto {
 
 	public void setMarca(String marca) {
 		this.marca = marca;
-	}
-
-	public String getNomeImagem() {
-		return nomeImagem;
-	}
-
-	public void setNomeImagem(String nomeImagem) {
-		this.nomeImagem = nomeImagem;
 	}
 
 }
