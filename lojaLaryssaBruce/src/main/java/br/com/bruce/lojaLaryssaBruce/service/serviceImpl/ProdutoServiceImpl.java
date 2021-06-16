@@ -1,24 +1,40 @@
 package br.com.bruce.lojaLaryssaBruce.service.serviceImpl;
 
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Random;
 
-import org.apache.tomcat.jni.File;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.bruce.lojaLaryssaBruce.modelo.Foto;
 import br.com.bruce.lojaLaryssaBruce.modelo.Produto;
+import br.com.bruce.lojaLaryssaBruce.repositorio.FotoRepositorio;
+import br.com.bruce.lojaLaryssaBruce.repositorio.ProdutoRepositorio;
 import br.com.bruce.lojaLaryssaBruce.service.ProdutoService;
 
+@Service
 public class ProdutoServiceImpl implements ProdutoService {
 
 	private static String caminhoImagem = "C:\\Users\\lucas.matheus\\Pictures";
 
-	@Override
-	public byte[] findByImage(String imagem) {
+	@Autowired
+	private ProdutoRepositorio produtoRepositorio;
 
+	@Autowired
+	private FotoRepositorio fotoRepositorio;
+
+	@Override
+	public byte[] findByImage(String imagem) throws IOException{
+     File caminhoArquivo = new File(caminhoImagem+imagem);
+     
+     if(imagem!=null || imagem.trim().length()>0) {
+    	 return Files.readAllBytes(caminhoArquivo.toPath());
+     }
 		return null;
 	}
 
@@ -45,29 +61,33 @@ public class ProdutoServiceImpl implements ProdutoService {
 				foto.setNomeFoto2(String.valueOf(numero2 + arquivo2.getOriginalFilename()));
 
 			}
-			if(!arquivo3.isEmpty()) {
+			if (!arquivo3.isEmpty()) {
 				int numero3 = random.nextInt(50000);
 				byte[] bytes3 = arquivo3.getBytes();
 				Path caminho3 = Paths.get(caminhoImagem + String.valueOf(numero3 + arquivo3.getOriginalFilename()));
 				Files.write(caminho3, bytes3);
 				foto.setNomeFoto3(String.valueOf(numero3 + arquivo3.getOriginalFilename()));
 			}
-			if(!arquivo4.isEmpty()) {
+			if (!arquivo4.isEmpty()) {
 				int numero4 = random.nextInt(50000);
 				byte[] bytes4 = arquivo4.getBytes();
 				Path caminho4 = Paths.get(caminhoImagem + String.valueOf(numero4 + arquivo4.getOriginalFilename()));
 				Files.write(caminho4, bytes4);
 				foto.setNomeFoto4(String.valueOf(numero4 + arquivo4.getOriginalFilename()));
 			}
-			if(!arquivo5.isEmpty()) {
+			if (!arquivo5.isEmpty()) {
 				int numero5 = random.nextInt(50000);
 				byte[] bytes5 = arquivo5.getBytes();
 				Path caminho5 = Paths.get(caminhoImagem + String.valueOf(numero5 + arquivo5.getOriginalFilename()));
 				Files.write(caminho5, bytes5);
 				foto.setNomeFoto5(String.valueOf(numero5 + arquivo5.getOriginalFilename()));
 			}
-		} catch (Exception e) {
 
+			this.fotoRepositorio.saveAndFlush(foto);
+			produto.setFoto(foto);
+			this.produtoRepositorio.saveAndFlush(produto);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
 	}
