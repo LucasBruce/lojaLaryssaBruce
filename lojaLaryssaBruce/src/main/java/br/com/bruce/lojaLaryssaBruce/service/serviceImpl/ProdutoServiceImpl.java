@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,6 +92,23 @@ public class ProdutoServiceImpl implements ProdutoService {
 			e.printStackTrace();
 		}
 
+	}
+	
+	@Override
+	public List<Produto> findAll(){
+		return this.produtoRepositorio.findAll();
+	}
+	
+	@Override
+	public void delete(long id) {
+		Optional<Produto> produto = this.produtoRepositorio.findById(id);
+		this.produtoRepositorio.delete(produto.get());
+	}
+	
+	@Override
+	public Produto findById(long id) {
+		 Optional<Produto> produto = this.produtoRepositorio.findById(id);
+		return produto.get();
 	}
 
 }

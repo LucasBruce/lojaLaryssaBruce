@@ -1,6 +1,7 @@
 package br.com.bruce.lojaLaryssaBruce.service;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,4 +13,10 @@ public interface ProdutoService {
 
 	void save(Produto produto, MultipartFile arquivo1, MultipartFile arquivo2, MultipartFile arquivo3,
 			MultipartFile arquivo4, MultipartFile arquivo5);
+
+	List<Produto> findAll();
+
+	void delete(long id);
+	
+	Produto findById(long id);
 }
