@@ -19,4 +19,7 @@ public interface ProdutoService {
 	void delete(long id);
 	
 	Produto findById(long id);
+	
+	//Melhore o código que salva a imagem
+	//Passe todas as funcões para o pacote service
 }
