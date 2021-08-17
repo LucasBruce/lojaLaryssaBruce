@@ -1,5 +1,6 @@
 package br.com.bruce.lojaLaryssaBruce.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -15,13 +16,14 @@ import org.springframework.validation.BindingResult;
 import br.com.bruce.lojaLaryssaBruce.modelo.Cidade;
 import br.com.bruce.lojaLaryssaBruce.repositorio.CidadeRepositorio;
 import br.com.bruce.lojaLaryssaBruce.repositorio.EstadoRepositorio;
+import br.com.bruce.lojaLaryssaBruce.service.CidadeService;
 
 @Controller
 public class CidadeController {
 
 	@Autowired
-	private CidadeRepositorio cidadeRepositorio;
-	
+	private CidadeService cidadeService;
+
 	@Autowired
 	private EstadoRepositorio estadoRepositorio;
 
@@ -32,33 +34,33 @@ public class CidadeController {
 		mav.addObject("listaEstados", this.estadoRepositorio.findAll());
 		return mav;
 	}
-	
+
 	@GetMapping("/gerencia/cidade/lista")
 	public ModelAndView listar() {
 		ModelAndView mav = new ModelAndView("/gerencia/cidade/lista");
-		mav.addObject("listaCidade", this.cidadeRepositorio.findAll());
+		List<Cidade> cidade = this.cidadeService.findAll();
+		mav.addObject("listaCidade", cidade);
 		return mav;
 	}
-	
+
 	@PostMapping("/gerencia/cidade/salvar")
 	public ModelAndView salvar(@Valid Cidade cidade, BindingResult result) {
-		if(result.hasErrors()) {
+		if (result.hasErrors()) {
 			return cadastro(cidade);
 		}
-		this.cidadeRepositorio.saveAndFlush(cidade);
+		this.cidadeService.save(cidade);
 		return cadastro(new Cidade());
 	}
-	
+
 	@GetMapping("/gerencia/cidade/remover/{id}")
 	public ModelAndView remover(@PathVariable("id") long id) {
-		Optional<Cidade> cidade = this.cidadeRepositorio.findById(id);
-		this.cidadeRepositorio.delete(cidade.get());
+		this.cidadeService.delete(id);
 		return listar();
 	}
-	
+
 	@GetMapping("/gerencia/cidade/editar/{id}")
 	public ModelAndView editar(@PathVariable("id") long id) {
-		Optional<Cidade> cidade = this.cidadeRepositorio.findById(id);
-		return cadastro(cidade.get());
+		Cidade cidade = this.cidadeService.findById(id);
+		return cadastro(cidade);
 	}
 }
