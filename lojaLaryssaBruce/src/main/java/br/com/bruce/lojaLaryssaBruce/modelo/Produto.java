@@ -14,12 +14,21 @@ public class Produto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	private String nome;
 	private String descricao;
 	private Double valorVenda;
 	private String categoria;
 	private String marca;
 	@OneToOne
-    private Foto foto;
+	private Foto foto;
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
 	public Foto getFoto() {
 		return foto;
