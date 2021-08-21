@@ -18,6 +18,15 @@ public class Foto {
 	private String nomeFoto3;
 	private String nomeFoto4;
 	private String nomeFoto5;
+	private String nomeFoto6;
+
+	public String getNomeFoto6() {
+		return nomeFoto6;
+	}
+
+	public void setNomeFoto6(String nomeFoto6) {
+		this.nomeFoto6 = nomeFoto6;
+	}
 
 	public Long getId() {
 		return id;

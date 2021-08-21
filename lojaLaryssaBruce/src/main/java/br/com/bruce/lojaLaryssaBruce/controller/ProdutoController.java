@@ -51,12 +51,12 @@ public class ProdutoController {
 	public ModelAndView salvar(@Valid Produto produto, BindingResult result,
 			@RequestParam("file1") MultipartFile arquivo1, @RequestParam("file2") MultipartFile arquivo2,
 			@RequestParam("file3") MultipartFile arquivo3, @RequestParam("file4") MultipartFile arquivo4,
-			@RequestParam("file5") MultipartFile arquivo5) {
+			@RequestParam("file5") MultipartFile arquivo5, @RequestParam("file6") MultipartFile arquivo6) {
 		
 		if (result.hasErrors()) {
 			return cadastro(produto);
 		}
-		this.produtoService.save(produto, arquivo1, arquivo2, arquivo3, arquivo4, arquivo5);
+		this.produtoService.save(produto, arquivo1, arquivo2, arquivo3, arquivo4, arquivo5, arquivo6);
 		return cadastro(new Produto());
 	}
 

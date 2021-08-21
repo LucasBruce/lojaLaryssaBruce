@@ -42,7 +42,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 
 	@Override
 	public void save(Produto produto, MultipartFile arquivo1, MultipartFile arquivo2, MultipartFile arquivo3,
-			MultipartFile arquivo4, MultipartFile arquivo5) {
+			MultipartFile arquivo4, MultipartFile arquivo5, MultipartFile arquivo6) {
 
 		try {
 			Foto foto = new Foto();
@@ -83,6 +83,13 @@ public class ProdutoServiceImpl implements ProdutoService {
 				Path caminho5 = Paths.get(caminhoImagem + String.valueOf(numero5 + arquivo5.getOriginalFilename()));
 				Files.write(caminho5, bytes5);
 				foto.setNomeFoto5(String.valueOf(numero5 + arquivo5.getOriginalFilename()));
+			}
+			if (!arquivo6.isEmpty()) {
+				int numero6 = random.nextInt(50000);
+				byte[] bytes6 = arquivo6.getBytes();
+				Path caminho6 = Paths.get(caminhoImagem + String.valueOf(numero6 + arquivo6.getOriginalFilename()));
+				Files.write(caminho6, bytes6);
+				foto.setNomeFoto5(String.valueOf(numero6 + arquivo6.getOriginalFilename()));
 			}
 
 			this.fotoRepositorio.saveAndFlush(foto);
