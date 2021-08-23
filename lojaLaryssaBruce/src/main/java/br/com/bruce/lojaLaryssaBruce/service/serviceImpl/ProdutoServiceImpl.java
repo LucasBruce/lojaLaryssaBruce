@@ -89,7 +89,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 				byte[] bytes6 = arquivo6.getBytes();
 				Path caminho6 = Paths.get(caminhoImagem + String.valueOf(numero6 + arquivo6.getOriginalFilename()));
 				Files.write(caminho6, bytes6);
-				foto.setNomeFoto5(String.valueOf(numero6 + arquivo6.getOriginalFilename()));
+				foto.setNomeFoto6(String.valueOf(numero6 + arquivo6.getOriginalFilename()));
 			}
 
 			this.fotoRepositorio.saveAndFlush(foto);
