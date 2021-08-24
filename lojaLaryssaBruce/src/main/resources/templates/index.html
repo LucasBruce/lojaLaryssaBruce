@@ -64,9 +64,9 @@
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <a th:href="${(#mvc.url('IC#getDetailsProduto').arg(0, produto.id)).build()}"><h5 class="fw-bolder">Dell notebook</h5></a>
+                                    <a th:href="${(#mvc.url('IC#getDetailsProduto').arg(0, produto.id)).build()}"><h5 class="fw-bolder" th:text="${produto.nome}"></h5></a>
                                     <!-- Product price-->
-                                    $40.00 - $80.00
+                                    $<span class="fw-bolder" th:text="${produto.valorVenda}"></span>
                                 </div>
                             </div>
                             <!-- Product actions-->
