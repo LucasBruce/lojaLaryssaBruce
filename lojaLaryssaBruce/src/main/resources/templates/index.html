@@ -35,7 +35,7 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex">
+                    <form action="/carrinho" class="d-flex">
                         <button class="btn btn-outline-dark" type="submit">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
@@ -69,12 +69,12 @@
                                     <!-- Product name-->
                                     <a th:href="${(#mvc.url('IC#getDetailsProduto').arg(0, produto.id)).build()}"><h5 class="fw-bolder" th:text="${produto.nome}"></h5></a>
                                     <!-- Product price-->
-                                    $<span class="fw-bolder" th:text="${produto.valorVenda}"></span>
+                                    <span class="fw-bold">$</span><span class="fw-bolder" th:text="${produto.valorVenda}"></span>
                                 </div>
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Adicionar no carrinho</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" th:href="@{/adicionarCarrinho/{id}(id=${produto.id})}">Adicionar no carrinho</a></div>
                             </div>
                         </div>
                     </div>
