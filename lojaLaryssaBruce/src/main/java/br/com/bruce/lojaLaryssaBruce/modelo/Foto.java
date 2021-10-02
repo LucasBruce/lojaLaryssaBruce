@@ -19,6 +19,15 @@ public class Foto {
 	private String nomeFoto4;
 	private String nomeFoto5;
 	private String nomeFoto6;
+	private String nomeFoto7;
+
+	public String getNomeFoto7() {
+		return nomeFoto7;
+	}
+
+	public void setNomeFoto7(String nomeFoto7) {
+		this.nomeFoto7 = nomeFoto7;
+	}
 
 	public String getNomeFoto6() {
 		return nomeFoto6;

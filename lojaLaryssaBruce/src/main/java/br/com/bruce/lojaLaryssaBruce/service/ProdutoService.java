@@ -12,7 +12,7 @@ public interface ProdutoService {
 	byte[] findByImage(String imagem) throws IOException;
 
 	void save(Produto produto, MultipartFile arquivo1, MultipartFile arquivo2, MultipartFile arquivo3,
-			MultipartFile arquivo4, MultipartFile arquivo5, MultipartFile arquivo6);
+			MultipartFile arquivo4, MultipartFile arquivo5, MultipartFile arquivo6, MultipartFile arquivo7);
 
 	List<Produto> findAll();
 

@@ -57,13 +57,13 @@
 						<label for="nome">Descrição do Produto</label><textarea id="summernote" autofocus="autofocus" th:field="*{descricao}" type="text" class="form-control" name="texto" placeholder="Descrição..."></textarea> 					
 						<div class="invalid-feedback"></div>
 					</div>
-
-				<div class="form-group col-md-12">
-					Foto 1 => 450 x 300 <input type="file" name="file1" accept="image/png"/>
+                
+                <div class="form-group col-md-12">
+					Foto 1 => 50 x 50 <input type="file" name="file1" accept="image/png"/>
 				</div>
-				
+                
 				<div class="form-group col-md-12">
-					Foto 2 => 800 x 400 <input type="file" name="file2" accept="image/png"/>
+					Foto 2 => 450 x 300 <input type="file" name="file2" accept="image/png"/>
 				</div>
 				
 				<div class="form-group col-md-12">
@@ -80,6 +80,10 @@
 				
 				<div class="form-group col-md-12">
 					Foto 6 => 800 x 400 <input type="file" name="file6" accept="image/png"/>
+				</div>
+				
+				<div class="form-group col-md-12">
+					Foto 7 => 800 x 400 <input type="file" name="file7" accept="image/png"/>
 				</div>
 
 				<input type="hidden" id="id" th:field="*{id}" name="id" value="" />

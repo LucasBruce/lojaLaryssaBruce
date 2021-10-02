@@ -36,12 +36,12 @@ public class CarrinhoServiceImpl implements CarrinhoService {
 	private ItensCompraRepositorio itensCompraRepositorio;
 
 	@Override
-	public void calcularTotal() {
+	public Compra calcularTotal() {
 		compra.setValorTotal(0.);
 		for (ItensCompra it : itensCompra) {
 			compra.setValorTotal(compra.getValorTotal() + it.getValorTotal());
 		}
-
+		return compra;
 	}
 
 //	@Override
@@ -103,7 +103,7 @@ public class CarrinhoServiceImpl implements CarrinhoService {
 	}
 
 	@Override
-	public void adicioneCarrinho(Long id) {
+	public String adicioneCarrinho(Long id) {
 		Optional<Produto> prod = produtoRepositorio.findById(id);
 		Produto produto = prod.get();
 		int controle = 0;
@@ -124,11 +124,21 @@ public class CarrinhoServiceImpl implements CarrinhoService {
 			item.setValorTotal(item.getValorTotal() + (item.getQuantidade() * item.getValorUnitario()));
 
 			itensCompra.add(item);
-		}		
+			
+		}
+		return "redirect:/";
+	}
+
+
+	@Override
+	public Cliente getCliente() {
+
+		return cliente;
 	}
 
 	@Override
-	public List<ItensCompra> itensCompra() {		
+	public List<ItensCompra> itensCompra() {
+		
 		return itensCompra;
 	}
 

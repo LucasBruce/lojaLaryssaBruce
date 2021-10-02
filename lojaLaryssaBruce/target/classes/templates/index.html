@@ -39,7 +39,7 @@
                         <button class="btn btn-outline-dark" type="submit">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                            <span class="badge bg-dark text-white ms-1 rounded-pill" th:text="${#lists.size(itensCompra)}"></span>
                         </button>
                     </form>
                 </div>
@@ -62,7 +62,7 @@
                     <div class="col mb-5" th:each="produto : ${listaProdutos}">
                         <div class="card h-100" >
                             <!-- Product image-->
-                            <img class="card-img-top" th:src="@{/gerencia/produto/retornarImagem/{imagem}(imagem=${produto.foto.nomeFoto1})}" alt="..." />
+                            <img class="card-img-top" th:src="@{/gerencia/produto/retornarImagem/{imagem}(imagem=${produto.foto.nomeFoto2})}" alt="..." />
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">

@@ -2,11 +2,17 @@ package br.com.bruce.lojaLaryssaBruce.service;
 
 import java.util.List;
 
+import br.com.bruce.lojaLaryssaBruce.modelo.Cliente;
+import br.com.bruce.lojaLaryssaBruce.modelo.Compra;
 import br.com.bruce.lojaLaryssaBruce.modelo.ItensCompra;
 
 public interface CarrinhoService {
+	
+	List<ItensCompra> itensCompra();
+	
+	Cliente getCliente();
 
-	void calcularTotal();
+	Compra calcularTotal();
 
 //	void buscarUsuarioLogado();
 
@@ -16,7 +22,6 @@ public interface CarrinhoService {
 
 	String removerProdutoCarrinho(Long id);
 
-	void adicioneCarrinho(Long id);
-	
-	List<ItensCompra> itensCompra();
+	String adicioneCarrinho(Long id);
+
 }

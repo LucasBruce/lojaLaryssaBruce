@@ -47,6 +47,9 @@ public class ItensCompra {
 	}
 
 	public Integer getQuantidade() {
+		if (quantidade == null) {
+			quantidade = 0;
+		}
 		return quantidade;
 	}
 

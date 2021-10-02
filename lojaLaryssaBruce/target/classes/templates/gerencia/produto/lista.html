@@ -38,9 +38,9 @@
 						<tr th:each="produto : ${listaProdutos}">
 							<td th:text="${produto.id}"></td>
 							<td th:text="${produto.nome}"></td>
-							<td th:text="${produto.descricao}"></td>
+							<td th:utext="${#strings.abbreviate(produto.descricao,50)}"></td>
 							<td th:text="${produto.valorVenda}"></td>
-							<td><img th:src="@{/gerencia/produto/retornarImagem/{imagem}(imagem=${produto.foto.nomeFoto1})}"
+							<td><img th:src="@{/gerencia/produto/retornarImagem/{imagem}(imagem=${produto.foto.nomeFoto2})}"
 									width="100" /></td>
 
 							<td colspan="2"><a class="btn btn-info btn-sm"

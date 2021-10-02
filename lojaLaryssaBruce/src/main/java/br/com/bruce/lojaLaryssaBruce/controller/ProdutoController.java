@@ -22,10 +22,9 @@ import br.com.bruce.lojaLaryssaBruce.service.ProdutoService;
 @Controller
 public class ProdutoController {
 
-
 	@Autowired
 	private ProdutoService produtoService;
-	
+
 	@GetMapping("/gerencia/produto/cadastro")
 	public ModelAndView cadastro(Produto produto) {
 		ModelAndView mav = new ModelAndView("/gerencia/produto/cadastro");
@@ -40,10 +39,10 @@ public class ProdutoController {
 		mav.addObject("listaProdutos", produto);
 		return mav;
 	}
-	
+
 	@GetMapping("/gerencia/produto/retornarImagem/{imagem}")
 	@ResponseBody
-	public byte[] retornarImagem(@PathVariable("imagem") String imagem) throws IOException{		
+	public byte[] retornarImagem(@PathVariable("imagem") String imagem) throws IOException {
 		return this.produtoService.findByImage(imagem);
 	}
 
@@ -51,12 +50,13 @@ public class ProdutoController {
 	public ModelAndView salvar(@Valid Produto produto, BindingResult result,
 			@RequestParam("file1") MultipartFile arquivo1, @RequestParam("file2") MultipartFile arquivo2,
 			@RequestParam("file3") MultipartFile arquivo3, @RequestParam("file4") MultipartFile arquivo4,
-			@RequestParam("file5") MultipartFile arquivo5, @RequestParam("file6") MultipartFile arquivo6) {
-		
+			@RequestParam("file5") MultipartFile arquivo5, @RequestParam("file6") MultipartFile arquivo6,
+			@RequestParam("file7") MultipartFile arquivo7) {
+
 		if (result.hasErrors()) {
 			return cadastro(produto);
 		}
-		this.produtoService.save(produto, arquivo1, arquivo2, arquivo3, arquivo4, arquivo5, arquivo6);
+		this.produtoService.save(produto, arquivo1, arquivo2, arquivo3, arquivo4, arquivo5, arquivo6, arquivo7);
 		return cadastro(new Produto());
 	}
 
@@ -68,7 +68,7 @@ public class ProdutoController {
 
 	@GetMapping("/gerencia/produto/editar/{id}")
 	public ModelAndView editar(@PathVariable("id") Long id) {
-	Produto produto	= this.produtoService.findById(id);
+		Produto produto = this.produtoService.findById(id);
 		return cadastro(produto);
 	}
 }
