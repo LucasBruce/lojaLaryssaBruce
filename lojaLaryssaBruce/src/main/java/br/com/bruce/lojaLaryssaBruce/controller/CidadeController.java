@@ -1,7 +1,7 @@
 package br.com.bruce.lojaLaryssaBruce.controller;
 
 import java.util.List;
-import java.util.Optional;
+
 
 import javax.validation.Valid;
 
@@ -14,9 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.validation.BindingResult;
 
 import br.com.bruce.lojaLaryssaBruce.modelo.Cidade;
-import br.com.bruce.lojaLaryssaBruce.repositorio.CidadeRepositorio;
-import br.com.bruce.lojaLaryssaBruce.repositorio.EstadoRepositorio;
+import br.com.bruce.lojaLaryssaBruce.modelo.Estado;
 import br.com.bruce.lojaLaryssaBruce.service.CidadeService;
+import br.com.bruce.lojaLaryssaBruce.service.EstadoService;
 
 @Controller
 public class CidadeController {
@@ -25,13 +25,14 @@ public class CidadeController {
 	private CidadeService cidadeService;
 
 	@Autowired
-	private EstadoRepositorio estadoRepositorio;
+	private EstadoService estadoService;
 
 	@GetMapping("/gerencia/cidade/cadastro")
 	public ModelAndView cadastro(Cidade cidade) {
 		ModelAndView mav = new ModelAndView("/gerencia/cidade/cadastro");
 		mav.addObject("cidade", cidade);
-		mav.addObject("listaEstados", this.estadoRepositorio.findAll());
+		List<Estado> estado = this.estadoService.findAll();
+		mav.addObject("listaEstados", estado);
 		return mav;
 	}
 

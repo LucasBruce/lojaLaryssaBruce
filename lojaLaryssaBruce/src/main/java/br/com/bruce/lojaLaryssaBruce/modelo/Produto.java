@@ -1,11 +1,13 @@
 package br.com.bruce.lojaLaryssaBruce.modelo;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -23,8 +25,16 @@ public class Produto {
 	private Double valorVenda;
 	private String categoria;
 	private String marca;
-	@OneToOne
-	private Foto foto;
+	@OneToMany
+	private List<Foto> foto;
+
+	public List<Foto> getFoto() {
+		return foto;
+	}
+
+	public void setFoto(List<Foto> foto) {
+		this.foto = foto;
+	}
 
 	public String getNome() {
 		return nome;
@@ -32,14 +42,6 @@ public class Produto {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public Foto getFoto() {
-		return foto;
-	}
-
-	public void setFoto(Foto foto) {
-		this.foto = foto;
 	}
 
 	public Long getId() {
